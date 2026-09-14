@@ -7,7 +7,7 @@
    https://script.google.com/macros/s/ABC123/exec
 ===================================================== */
 
-const API_URL = "";
+const API_URL = "https://script.google.com/macros/s/AKfycby8BBcM4QzEh1B2D99Q8qp0EBK3K22pPdae4JRJWytSqeZR2tRiSxtRUDJmHomWAT_i8w/exec";
 
 
 /* =====================================================
