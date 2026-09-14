@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>EduMaze - Game Edukasi</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         MENU AWAL
+    ========================== -->
+    <section id="menuScreen" class="screen active">
+
+        <div class="menu-card">
+
+            <div class="logo">🎓</div>
+
+            <h1>EDU<span>MAZE</span></h1>
+
+            <p class="subtitle">
+                Belajar sambil menjelajahi labirin!
+            </p>
+
+            <div class="input-group">
+
+                <label for="username">
+                    Nama Pemain
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Masukkan username..."
+                    maxlength="20"
+                    autocomplete="off"
+                >
+
+            </div>
+
+            <button
+                id="startBtn"
+                class="main-btn"
+            >
+                ▶ MULAI BERMAIN
+            </button>
+
+            <button
+                id="leaderboardBtn"
+                class="secondary-btn"
+            >
+                🏆 LEADERBOARD
+            </button>
+
+            <div class="game-info">
+
+                <div>
+                    <span>🧩</span>
+                    <p>Labirin</p>
+                </div>
+
+                <div>
+                    <span>📚</span>
+                    <p>Quiz</p>
+                </div>
+
+                <div>
+                    <span>🏆</span>
+                    <p>Ranking</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         GAME
+    ========================== -->
+    <section id="gameScreen" class="screen">
+
+        <div class="game-container">
+
+            <header class="game-header">
+
+                <div class="stat">
+                    <small>PEMAIN</small>
+                    <strong id="playerName">Player</strong>
+                </div>
+
+                <div class="stat">
+                    <small>SKOR</small>
+                    <strong id="scoreDisplay">0</strong>
+                </div>
+
+                <div class="stat">
+                    <small>NYAWA</small>
+                    <strong id="lifeDisplay">❤️❤️❤️</strong>
+                </div>
+
+                <div class="stat">
+                    <small>WAKTU</small>
+                    <strong id="timerDisplay">00:00</strong>
+                </div>
+
+            </header>
+
+
+            <div class="level-info">
+
+                <span>
+                    LEVEL <b id="levelDisplay">1</b>
+                </span>
+
+                <span>
+                    SOAL
+                    <b id="questionProgress">
+                        0/5
+                    </b>
+                </span>
+
+            </div>
+
+
+            <div class="maze-wrapper">
+
+                <canvas
+                    id="mazeCanvas"
+                    width="600"
+                    height="600"
+                ></canvas>
+
+            </div>
+
+
+            <!-- KONTROL MOBILE -->
+            <div class="controls">
+
+                <button
+                    class="control-btn"
+                    data-direction="up"
+                >
+                    ▲
+                </button>
+
+                <div class="control-row">
+
+                    <button
+                        class="control-btn"
+                        data-direction="left"
+                    >
+                        ◀
+                    </button>
+
+                    <button
+                        class="control-btn center"
+                        disabled
+                    >
+                        🎮
+                    </button>
+
+                    <button
+                        class="control-btn"
+                        data-direction="right"
+                    >
+                        ▶
+                    </button>
+
+                </div>
+
+                <button
+                    class="control-btn"
+                    data-direction="down"
+                >
+                    ▼
+                </button>
+
+            </div>
+
+
+            <p class="keyboard-info">
+                PC: gunakan tombol ↑ ↓ ← →
+                atau W A S D
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         MODAL PERTANYAAN
+    ========================== -->
+    <div
+        id="questionModal"
+        class="modal"
+    >
+
+        <div class="modal-card">
+
+            <span class="quiz-icon">
+                🧠
+            </span>
+
+            <p class="quiz-label">
+                PERTANYAAN
+            </p>
+
+            <h2 id="questionText">
+                Pertanyaan muncul di sini
+            </h2>
+
+            <div
+                id="answerContainer"
+                class="answers"
+            >
+            </div>
+
+            <p
+                id="feedback"
+                class="feedback"
+            ></p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         FINISH
+    ========================== -->
+    <section id="finishScreen" class="screen">
+
+        <div class="finish-card">
+
+            <div class="trophy">
+                🏆
+            </div>
+
+            <h1>
+                LEVEL SELESAI!
+            </h1>
+
+            <p>
+                Hebat,
+                <strong id="finishName">
+                    Player
+                </strong>!
+            </p>
+
+
+            <div class="result-grid">
+
+                <div>
+                    <span>⭐</span>
+                    <small>SKOR</small>
+                    <strong id="finalScore">
+                        0
+                    </strong>
+                </div>
+
+                <div>
+                    <span>⏱️</span>
+                    <small>WAKTU</small>
+                    <strong id="finalTime">
+                        00:00
+                    </strong>
+                </div>
+
+                <div>
+                    <span>❤️</span>
+                    <small>NYAWA</small>
+                    <strong id="finalLives">
+                        3
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <button
+                id="nextLevelBtn"
+                class="main-btn"
+            >
+                LEVEL SELANJUTNYA
+            </button>
+
+            <button
+                id="finishLeaderboardBtn"
+                class="secondary-btn"
+            >
+                🏆 LIHAT LEADERBOARD
+            </button>
+
+            <button
+                id="homeBtn"
+                class="text-btn"
+            >
+                Kembali ke Menu
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         LEADERBOARD
+    ========================== -->
+    <section id="leaderboardScreen" class="screen">
+
+        <div class="leaderboard-card">
+
+            <h1>
+                🏆 LEADERBOARD
+            </h1>
+
+            <p>
+                Top pemain EduMaze
+            </p>
+
+            <div
+                id="leaderboardList"
+                class="leaderboard-list"
+            >
+
+                <div class="loading">
+                    Memuat leaderboard...
+                </div>
+
+            </div>
+
+
+            <button
+                id="leaderboardBackBtn"
+                class="main-btn"
+            >
+                ← KEMBALI
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
